@@ -1,3 +1,9 @@
+# Pico Build Artifacts
+.cache/
+build/
+pico-sdk/
+pico_sdk_import.cmake
+
 # Prerequisites
 *.d
 
