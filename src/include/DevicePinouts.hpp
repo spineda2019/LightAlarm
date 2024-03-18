@@ -26,6 +26,7 @@ constexpr std::uint8_t STATUS_LED(5);
 
 void ActivateAlarm();
 void ToggleStatusLED();
+void SetupPins();
 
 } // namespace pins
 

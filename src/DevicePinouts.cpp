@@ -20,12 +20,20 @@
 namespace pins {
 
 void ActivateAlarm() { gpio_put(pins::SPEAKER, 1); }
+
 void ToggleStatusLED() {
   if (gpio_get(STATUS_LED)) {
     gpio_put(STATUS_LED, 0);
   } else {
     gpio_put(STATUS_LED, 1);
   }
+}
+
+void SetupPins() {
+  gpio_init(MOTION_DETECTOR);
+  gpio_init(SPEAKER);
+  gpio_init(PHOTO_RESISTOR);
+  gpio_init(STATUS_LED);
 }
 
 } // namespace pins
