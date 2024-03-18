@@ -40,6 +40,8 @@ void HandleMotionInterrupt(void) {
 
 int main(void) {
   pins::SetupPins();
+  gpio_set_irq_enabled_with_callback(pins::MOTION_DETECTOR, GPIO_IRQ_EDGE_RISE,
+                                     1, &HandleMotionInterrupt);
 
   while (1) {
     pins::ToggleStatusLED();
