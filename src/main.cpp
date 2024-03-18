@@ -26,10 +26,7 @@
 state::State current_state(state::State::LightOff);
 std::uint16_t seconds_since_alarm{};
 
-void HandleMotionInterrupt(uint gpio, std::uint32_t event) {
-  (void)gpio;
-  (void)event;
-
+void HandleMotionInterrupt(uint, std::uint32_t) {
   switch (current_state) {
   case state::State::LightOff:
     break;
