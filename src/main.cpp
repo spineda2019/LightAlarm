@@ -24,12 +24,16 @@ int main(void) {
   std::size_t seconds_since_alarm{};
 
   while (1) {
+    pins::ToggleStatusLED();
     current_state = state::DetermineRoomState(seconds_since_alarm);
+
     switch (current_state) {
     case state::State::LightOff:
+      seconds_since_alarm = 0;
       continue;
       break;
     case state::State::LightOnActive:
+      seconds_since_alarm++;
       continue;
       break;
     case state::State::LightOnStale:
@@ -37,8 +41,8 @@ int main(void) {
       seconds_since_alarm = 0;
       break;
     }
+
     sleep_ms(1000);
-    seconds_since_alarm++;
   }
 
   return 0;

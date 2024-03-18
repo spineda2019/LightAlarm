@@ -24,7 +24,7 @@ namespace state {
 State DetermineRoomState(std::size_t time_elapsed) {
   if (!gpio_get(pins::PHOTO_RESISTOR)) {
     return State::LightOff;
-  } else if (time_elapsed < TIMEOUT) {
+  } else if (time_elapsed > TIMEOUT) {
     return State::LightOnActive;
   } else {
     return State::LightOnStale;
