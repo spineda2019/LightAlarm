@@ -31,7 +31,7 @@ set(CMAKE_C_STANDARD_REQUIRED TRUE)
 
 pico_sdk_init()
 
-set(SOURCES "src/main.cpp" "src/State.cpp")
+set(SOURCES "src/main.cpp" "src/State.cpp" "src/DevicePinouts.cpp")
 add_executable(${PROJECT_NAME} ${SOURCES})
 pico_add_extra_outputs(${PROJECT_NAME})
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_SOURCE_DIR}/src/include")
