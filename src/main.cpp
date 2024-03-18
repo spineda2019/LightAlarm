@@ -13,6 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
+
 #include <cstddef>
 
 #include "DevicePinouts.hpp"
@@ -21,7 +22,7 @@
 
 int main(void) {
   state::State current_state(state::State::LightOff);
-  std::size_t seconds_since_alarm{};
+  std::uint16_t seconds_since_alarm{};
   pins::SetupPins();
 
   while (1) {

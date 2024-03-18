@@ -19,13 +19,13 @@
 #include <cstddef>
 #include <cstdint>
 namespace state {
-constexpr std::size_t TIMEOUT(300);
+constexpr std::uint16_t TIMEOUT(300);
 enum class State : std::uint8_t {
   LightOff,
   LightOnActive,
   LightOnStale,
 };
 
-State DetermineRoomState(std::size_t time_elapsed);
+State DetermineRoomState(std::uint16_t time_elapsed);
 } // namespace state
 #endif // SRC_INCLUDE_STATE_HPP_

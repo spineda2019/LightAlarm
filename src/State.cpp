@@ -14,6 +14,7 @@
    limitations under the License.
 */
 #include <cstddef>
+#include <cstdint>
 
 #include "hardware/gpio.h"
 #include "include/DevicePinouts.hpp"
@@ -21,7 +22,7 @@
 
 namespace state {
 
-State DetermineRoomState(std::size_t time_elapsed) {
+State DetermineRoomState(std::uint16_t time_elapsed) {
   if (!gpio_get(pins::PHOTO_RESISTOR)) {
     return State::LightOff;
   } else if (time_elapsed > TIMEOUT) {
