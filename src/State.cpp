@@ -14,16 +14,18 @@
    limitations under the License.
 */
 
-#ifndef SRC_INCLUDE_STATE_HPP_
-#define SRC_INCLUDE_STATE_HPP_
-#include <cstdint>
-namespace state {
-enum class State : std::uint8_t {
-  LightOff,
-  LightOnActive,
-  LightOnStale,
-};
+#include "include/State.hpp"
+#include "hardware/gpio.h"
+#include "include/DevicePinouts.hpp"
 
-State DetermineRoomState();
+namespace state {
+
+State DetermineRoomState() {
+  if (!gpio_get(pins::PHOTO_RESISTOR)) {
+    return State::LightOff;
+  } else {
+    // TODO(sep): Timer
+    return State::LightOnStale;
+  }
+}
 } // namespace state
-#endif // SRC_INCLUDE_STATE_HPP_

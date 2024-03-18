@@ -14,16 +14,14 @@
    limitations under the License.
 */
 
-#ifndef SRC_INCLUDE_STATE_HPP_
-#define SRC_INCLUDE_STATE_HPP_
-#include <cstdint>
-namespace state {
-enum class State : std::uint8_t {
-  LightOff,
-  LightOnActive,
-  LightOnStale,
-};
+#ifndef SRC_INCLUDE_DEVICEPINOUTS_HPP_
+#define SRC_INCLUDE_DEVICEPINOUTS_HPP_
 
-State DetermineRoomState();
-} // namespace state
-#endif // SRC_INCLUDE_STATE_HPP_
+#include <cstdint>
+namespace pins {
+constexpr std::uint8_t MOTION_DETECTOR(1);
+constexpr std::uint8_t SPEAKER(10);
+constexpr std::uint8_t PHOTO_RESISTOR(34);
+} // namespace pins
+
+#endif // SRC_INCLUDE_DEVICEPINOUTS_HPP_
