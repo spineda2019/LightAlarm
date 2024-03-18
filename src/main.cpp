@@ -17,6 +17,22 @@
 #include "include/State.hpp"
 
 int main(void) {
-  State current_state(State::LightOff);
+  state::State current_state(state::State::LightOff);
+
+  while (1) {
+    current_state = state::DetermineRoomState();
+    switch (current_state) {
+    case state::State::LightOff:
+      continue;
+      break;
+    case state::State::LightOnStale:
+      // TODO(SEP): Alarm
+      break;
+    case state::State::LightOnActive:
+      // TODO(sep): increment timeout
+      break;
+    }
+  }
+
   return 0;
 }
