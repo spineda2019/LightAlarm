@@ -13,19 +13,22 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
+#include <cstddef>
 
-#include "include/State.hpp"
 #include "hardware/gpio.h"
 #include "include/DevicePinouts.hpp"
+#include "include/State.hpp"
 
 namespace state {
 
-State DetermineRoomState() {
+State DetermineRoomState(std::size_t time_elapsed) {
   if (!gpio_get(pins::PHOTO_RESISTOR)) {
     return State::LightOff;
+  } else if (time_elapsed < TIMEOUT) {
+    return State::LightOnActive;
   } else {
-    // TODO(sep): Timer
     return State::LightOnStale;
   }
 }
+
 } // namespace state
