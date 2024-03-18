@@ -17,12 +17,28 @@
 #include <cstddef>
 
 #include "DevicePinouts.hpp"
+#include "hardware/gpio.h"
 #include "include/State.hpp"
 #include "pico/time.h"
 
+state::State current_state(state::State::LightOff);
+std::uint16_t seconds_since_alarm{};
+
+void HandleMotionInterrupt(void) {
+  switch (current_state) {
+  case state::State::LightOff:
+    break;
+  case state::State::LightOnActive:
+    seconds_since_alarm = 0;
+    break;
+  case state::State::LightOnStale:
+    gpio_put(pins::SPEAKER, 0);
+    seconds_since_alarm = 0;
+    break;
+  }
+}
+
 int main(void) {
-  state::State current_state(state::State::LightOff);
-  std::uint16_t seconds_since_alarm{};
   pins::SetupPins();
 
   while (1) {
