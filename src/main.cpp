@@ -22,6 +22,7 @@
 int main(void) {
   state::State current_state(state::State::LightOff);
   std::size_t seconds_since_alarm{};
+  pins::SetupPins();
 
   while (1) {
     pins::ToggleStatusLED();
