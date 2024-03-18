@@ -19,10 +19,10 @@
 
 #include <cstdint>
 namespace pins {
-constexpr std::uint8_t MOTION_DETECTOR(1);
+constexpr std::uint8_t STATUS_LED(0);
 constexpr std::uint8_t SPEAKER(10);
-constexpr std::uint8_t PHOTO_RESISTOR(34);
-constexpr std::uint8_t STATUS_LED(5);
+constexpr std::uint8_t MOTION_DETECTOR(20);
+constexpr std::uint8_t PHOTO_RESISTOR(22);
 
 void ActivateAlarm();
 void ToggleStatusLED();
