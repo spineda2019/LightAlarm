@@ -15,16 +15,21 @@
 */
 
 #include <cstddef>
+#include <cstdint>
 
 #include "DevicePinouts.hpp"
 #include "hardware/gpio.h"
 #include "include/State.hpp"
 #include "pico/time.h"
+#include "pico/types.h"
 
 state::State current_state(state::State::LightOff);
 std::uint16_t seconds_since_alarm{};
 
-void HandleMotionInterrupt(void) {
+void HandleMotionInterrupt(uint gpio, uint32_t event) {
+  (void)gpio;
+  (void)event;
+
   switch (current_state) {
   case state::State::LightOff:
     break;
