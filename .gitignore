@@ -1,4 +1,5 @@
 # Pico Build Artifacts
+.clangd
 .cache/
 build/
 pico-sdk/
