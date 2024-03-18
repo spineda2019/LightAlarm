@@ -13,25 +13,32 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
+#include <cstddef>
 
+#include "DevicePinouts.hpp"
 #include "include/State.hpp"
+#include "pico/time.h"
 
 int main(void) {
   state::State current_state(state::State::LightOff);
+  std::size_t seconds_since_alarm{};
 
   while (1) {
-    current_state = state::DetermineRoomState();
+    current_state = state::DetermineRoomState(seconds_since_alarm);
     switch (current_state) {
     case state::State::LightOff:
       continue;
       break;
-    case state::State::LightOnStale:
-      // TODO(SEP): Alarm
-      break;
     case state::State::LightOnActive:
-      // TODO(sep): increment timeout
+      continue;
+      break;
+    case state::State::LightOnStale:
+      pins::ActivateAlarm();
+      seconds_since_alarm = 0;
       break;
     }
+    sleep_ms(1000);
+    seconds_since_alarm++;
   }
 
   return 0;
