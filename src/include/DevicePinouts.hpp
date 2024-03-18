@@ -22,6 +22,9 @@ namespace pins {
 constexpr std::uint8_t MOTION_DETECTOR(1);
 constexpr std::uint8_t SPEAKER(10);
 constexpr std::uint8_t PHOTO_RESISTOR(34);
+
+void ActivateAlarm();
+
 } // namespace pins
 
 #endif // SRC_INCLUDE_DEVICEPINOUTS_HPP_
