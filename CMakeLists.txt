@@ -1,17 +1,5 @@
 cmake_minimum_required(VERSION 3.13)
-
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-set(PROJECT_NAME "LightAlarm")
-project(${PROJECT_NAME} CXX C ASM)
-
-enable_language(CXX)
-
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD 11)
-
-set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
-set(CMAKE_C_STANDARD_REQUIRED TRUE)
-
 
 if(EXISTS "${CMAKE_SOURCE_DIR}/pico-sdk")
     message("PICO SDK Found!")
@@ -32,8 +20,18 @@ else()
 endif()
 
 include(pico_sdk_import.cmake)
+
+project(LightAlarm CXX C ASM)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_C_STANDARD 17)
+
+set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
+set(CMAKE_C_STANDARD_REQUIRED TRUE)
+
 pico_sdk_init()
-set(SOURCES "src/main.cpp")
+
+set(SOURCES "src/main.cpp" "src/State.cpp")
 add_executable(${PROJECT_NAME} ${SOURCES})
 pico_add_extra_outputs(${PROJECT_NAME})
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_SOURCE_DIR}/src/include")
